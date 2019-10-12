@@ -31,7 +31,7 @@ import static org.junit.Assert.*;
  * @since 04.07.2006
  */
 public class DefaultSingletonBeanRegistryTests {
-
+	// TODO chenjj
 	@Test
 	public void testSingletons() {
 		DefaultSingletonBeanRegistry beanRegistry = new DefaultSingletonBeanRegistry();

@@ -123,23 +123,29 @@ class ConstructorResolver {
 		Constructor<?> constructorToUse = null;
 		ArgumentsHolder argsHolderToUse = null;
 		Object[] argsToUse = null;
-
+		//1、构造函数的参数的确定
+		//根据explicitArgs参数判断。
+		//如果传入的参数不为空，那便直接确定参数。
 		if (explicitArgs != null) {
 			argsToUse = explicitArgs;
 		}
+		//否则，传入的参数为空
 		else {
 			Object[] argsToResolve = null;
 			synchronized (mbd.constructorArgumentLock) {
 				constructorToUse = (Constructor<?>) mbd.resolvedConstructorOrFactoryMethod;
 				if (constructorToUse != null && mbd.constructorArgumentsResolved) {
 					// Found a cached constructor...
+					//从缓存中找不到构造函数的参数
 					argsToUse = mbd.resolvedConstructorArguments;
+					//如果在缓存中找不到构造函数的参，就去缓存中找准备好的构造函数参数
 					if (argsToUse == null) {
 						argsToResolve = mbd.preparedConstructorArguments;
 					}
 				}
 			}
 			if (argsToResolve != null) {
+				//解析准备好的构造函数参数，作为构造函数的参数
 				argsToUse = resolvePreparedArguments(beanName, mbd, bw, constructorToUse, argsToResolve, true);
 			}
 		}

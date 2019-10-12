@@ -1074,12 +1074,15 @@ public abstract class AbstractBeanDefinition extends BeanMetadataAttributeAccess
 	}
 
 	/**
+	 * 验证及准备覆盖为这个bean定义的方法
 	 * Validate and prepare the method overrides defined for this bean.
+	 * 检查特定名称的方法是否存在
 	 * Checks for existence of a method with the specified name.
 	 * @throws BeanDefinitionValidationException in case of validation failure
 	 */
 	public void prepareMethodOverrides() throws BeanDefinitionValidationException {
 		// Check that lookup methods exists.
+		//检查lookup methods 是否存在
 		if (hasMethodOverrides()) {
 			Set<MethodOverride> overrides = getMethodOverrides().getOverrides();
 			synchronized (overrides) {
@@ -1092,8 +1095,11 @@ public abstract class AbstractBeanDefinition extends BeanMetadataAttributeAccess
 
 	/**
 	 * Validate and prepare the given method override.
+	 * 验证和准备方法的重写
 	 * Checks for existence of a method with the specified name,
+	 * 检查指定名称的方法是否存在
 	 * marking it as not overloaded if none found.
+	 * 如果没有找到，标记为未重载的
 	 * @param mo the MethodOverride object to validate
 	 * @throws BeanDefinitionValidationException in case of validation failure
 	 */
